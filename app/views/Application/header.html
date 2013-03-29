@@ -1,0 +1,20 @@
+<div id="header">
+  <div id="inner-head">
+    <h1 id="logo">
+	    <a href="@{Application.index}" onclick="javascript:void(0);">Life Trip</a>
+    </h1>
+    <div id="topbar">
+          <ul id="bar-btn">
+             #{if session['USER_ID']==null}
+             <li><a href="#" class="btn btn-info">随便看看</a></li>
+             <li><a href="@{Users.login()}" class="btn btn-info">登 录</a></li>
+             <li><a href="@{Users.register()}" class="btn btn-info">注 册</a></li>
+             #{/if}
+             #{else}
+             <li><a href="#" class="btn btn-info">设置</a></li>
+             <li><a href="@{Users.logout()}" class="btn btn-danger">注销</a></li>
+             #{/else}
+          </ul>
+    </div>
+  </div>
+</div>
