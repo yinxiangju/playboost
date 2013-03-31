@@ -34,6 +34,7 @@ public class User extends Model {
     public String passwordConfirm;
 
     @ManyToOne
+    @Required
     public UserGroup userGroup;
 
     public User() {

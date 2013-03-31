@@ -33,6 +33,10 @@ public class Initialize extends Job<String> {
         normalUser.name = Globals.NORMAL_USER;
         normalUser.save();
         initNormalUser(normalUser);
+
+        User u = new User("admin@admin.com", "admin");
+        u.userGroup = normalUser;
+        u.save();
     }
 
     /**
