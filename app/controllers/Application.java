@@ -15,7 +15,7 @@ public class Application extends Controller {
      */
     @Before
     public static void checkPermission() {
-        Logger.info(request.action);
+        Logger.info(" application check permission : " + request.action);
         // 检查是否是匿名用户可访问的页面
         if (checkAnonymous()) return;
         User user = currentUser();
@@ -62,5 +62,4 @@ public class Application extends Controller {
         }
         render();
     }
-
 }

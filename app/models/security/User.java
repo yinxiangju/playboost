@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
 
 import play.data.validation.MaxSize;
@@ -34,7 +35,6 @@ public class User extends Model {
     public String passwordConfirm;
 
     @ManyToOne
-    @Required
     public UserGroup userGroup;
 
     public User() {
@@ -46,6 +46,7 @@ public class User extends Model {
     }
 
     @PrePersist
+    @PreUpdate
     public void hashPassword() {
         this.password = Codec.hexMD5(this.password);
     }

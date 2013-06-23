@@ -53,7 +53,7 @@ public class Users extends Application {
      * @param email
      */
     public static void checkEmail(String email) {
-        long count = User.count("email = ?", email);
+        long count = User.find("email = ?", email).fetch(1).size();
         if (count > 0) {
             renderJSON("{\"valid\":0}");
         } else {
@@ -61,9 +61,10 @@ public class Users extends Application {
         }
     }
 
-    public static void add(@Valid User user) {
+    public static void save(@Valid User user) {
         if (validation.hasErrors()) {
-            badRequest();
+            validation.keep();
+            register();
         }
         // 新注册用户默认是普通用户组
         UserGroup group = UserGroup.find("name = ?", Globals.NORMAL_USER).first();
@@ -71,7 +72,7 @@ public class Users extends Application {
         user.save();
         loginSession(user.id, user.nickName);
         Logger.info(user.toString() + " saved !");
-        Users.index();
+        Application.index();
     }
 
     private static void loginSession(long userId, String nickName) {

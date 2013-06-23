@@ -23,11 +23,13 @@ public class Initialize extends Job<String> {
         root.nickName = "Root";
         root.userGroup = admin;
         root.save();
+
         // 初始化匿名用户组
         UserGroup anonymous = new UserGroup();
         anonymous.name = Globals.ANONYMOUS;
         anonymous.save();
         initAnonymous(anonymous);
+
         // 初始化普通用户组，新注册用户默认都是该用户组
         UserGroup normalUser = new UserGroup();
         normalUser.name = Globals.NORMAL_USER;
@@ -35,6 +37,7 @@ public class Initialize extends Job<String> {
         initNormalUser(normalUser);
 
         User u = new User("admin@admin.com", "admin");
+        u.nickName = "admin";
         u.userGroup = normalUser;
         u.save();
     }
@@ -45,8 +48,8 @@ public class Initialize extends Job<String> {
     private void initAnonymous(UserGroup anonymous) {
         anonymous.resources.add(new Resource("Application.index", "Application.index"));
         // Users
-        anonymous.resources.add(Resource.createOrFetch("Users.register", "Users.register"));
-        anonymous.resources.add(Resource.createOrFetch("Users.add", "Users.add"));
+        anonymous.resources.add(Resource.createOrFetch("注册页面", "Users.register"));
+        anonymous.resources.add(Resource.createOrFetch("用户注册", "Users.save"));
         anonymous.resources.add(Resource.createOrFetch("Users.checkEmail", "Users.checkEmail"));
         anonymous.resources.add(Resource.createOrFetch("Users.login", "Users.login"));
         anonymous.resources.add(Resource.createOrFetch("Users.logout", "Users.logout"));

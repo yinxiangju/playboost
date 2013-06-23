@@ -4,12 +4,20 @@
 
 # Home page
 GET     /                                       Application.index
+GET     /admin                                  admin.Admin.index
 
-# Ignore favicon requests
+# Assets
 GET     /favicon.ico                            404
-
-# Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
-# Catch all
+
+# User Manage
+GET     /admin/usergroups/edit/{<[0-9]+>id}           admin.UserGroups.edit
+GET     /admin/resources/edit/{<[0-9]+>id}            admin.Resources.edit
+
+
+# Catch all admins
+*       /admin/{controller}/{action}                  admin.{controller}.{action}
+
+# Catch all others
 *       /{controller}/{action}                  {controller}.{action}

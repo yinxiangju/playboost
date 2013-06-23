@@ -1,0 +1,5 @@
+<ul class="nav nav-pills nav-stacked">
+  <li class="#{if userAdmin}active#{/if}"><a href="@{admin.Users.index()}">用户管理</a></li>
+  <li class="#{if groupAdmin}active#{/if}"><a href="@{admin.UserGroups.index()}">用户组管理</a></li>
+  <li class="#{if resourceAdmin}active#{/if}"><a href="@{admin.Resources.index()}">访问资源管理</a></li>
+</ul>
