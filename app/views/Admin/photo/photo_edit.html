@@ -1,0 +1,36 @@
+#{extends 'Admin/main.html' /}
+#{set title:'Home' /}
+#{set 'moreScripts'}
+#{/set}
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      #{include 'Admin/photo/side.html' /}
+    </div>
+    <div class="span10">
+      <form class="form-horizontal" action="@{admin.Photos.save()}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="photo.id" value="${photo?.id}"/>
+        <input type="hidden" name="galleryID" value="${gallery.id}"/>
+			  <fieldset>
+			    <legend>相册名称：${gallery.name}</legend>
+				  <div class="control-group">
+            <label class="control-label" for="photo.image">文件选择:</label>
+            <div class="controls">
+              <input class="input-file" type="file" name="photo.image"/>
+            </div>
+          </div>
+          
+			    <div class="control-group">
+				    <div class="controls">
+				      <a href="@{admin.Photos.photo(gallery.id)}" class="btn">返回列表</a>
+				      <button type="submit" class="btn btn-success">添加</button>
+				      <a class="btn btn-success">添加并返回列表</a>
+				      <a class="btn btn-success">添加并新建下一个</a>
+				    </div>
+				  </div>
+			  </fieldset>
+			</form>
+    </div>
+  </div>
+</div>

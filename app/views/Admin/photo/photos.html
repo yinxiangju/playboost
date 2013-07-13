@@ -1,0 +1,38 @@
+#{extends 'Admin/main.html' /}
+#{set title:'Home' /}
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      #{include 'Admin/photo/side.html' /}
+    </div>
+    <div class="span10">
+      <div><a class="btn btn-success" href="@{admin.Photos.edit(gallery.id)}">添加</a></div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>缩略图</th>
+            <th>照片URL</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          #{list gallery.photos, as:'p'}
+          <tr>
+            <td>${p.id}</td>
+            <td><img style="height: 80px" src="/data/photos/${gallery.name}/${p.name}"/></td>
+            <td>
+              <input class="input-xxlarge" type="text" value="/data/photos/${gallery.name}/${p.name}"/>
+            </td>
+            <td>
+              <a onclick="return confirm('确定要删除么？');" href="@{admin.Photos.delete(p.id)}">删除</a>
+            </td>
+          </tr>
+          #{/list}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

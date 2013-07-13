@@ -2,11 +2,17 @@ body {
 	background-color: #E8E9ED;
 	font-family: "Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"宋体";
 }
+
 body a {
 	text-decoration: none;
 }
+
 body a:hover {
 	text-decoration: none;
+}
+
+.input-file {
+	
 }
 
 #header {

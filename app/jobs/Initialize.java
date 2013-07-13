@@ -19,7 +19,7 @@ public class Initialize extends Job<String> {
         UserGroup admin = new UserGroup();
         admin.name = Globals.ADMIN;
         admin.save();
-        User root = new User("root@lt.com", "root");
+        User root = new User("root@it.com", "root");
         root.nickName = "Root";
         root.userGroup = admin;
         root.save();
