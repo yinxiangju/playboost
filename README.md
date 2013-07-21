@@ -17,3 +17,5 @@ A play scratch with url auth, user register and other common used modules.
 ![](2.png)
 
 ![](3.png)
+
+ceshi play
