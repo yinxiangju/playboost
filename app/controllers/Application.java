@@ -10,7 +10,9 @@ import utils.Globals;
 
 public class Application extends Controller {
 
-    /**
+    private static final String REGEX = "^(*|post|POST|get|GET)$";
+
+	/**
      * 权限控制
      */
     @Before
@@ -23,7 +25,7 @@ public class Application extends Controller {
             // 如果是管理员则直接通过
             if (Globals.ADMIN.equals(user.userGroup.name)) return;
             for (Resource r : user.userGroup.resources) {
-                if (request.action.equals(r.resource)) return;
+                if (request.action.equals(r.resource) && request.method.matches(REGEX)) return;
             }
         }
         forbidden("没有此权限");

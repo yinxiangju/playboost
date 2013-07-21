@@ -20,6 +20,11 @@ public class Resource extends Model {
     @MinSize(value = 2)
     @Column(nullable = false, unique = true)
     public String name;
+    
+    @MinSize(value = 1)
+    @Column(nullable = false)
+    public String method;
+    
     @Column(nullable = false, unique = true)
     @MinSize(value = 2)
     public String resource;
@@ -28,20 +33,21 @@ public class Resource extends Model {
 
     @Transient
     public boolean checked;
-
-    public Resource(String name, String resource) {
-        this.name = name;
-        this.resource = resource;
-    }
+    
+    public Resource(String name, String method, String resource) {
+		this.name = name;
+		this.method = method;
+		this.resource = resource;
+	}
 
     /**
      * 新建一个资源，如果数据库已有则不必新建
      */
-    public static Resource createOrFetch(String name, String resource) {
+    public static Resource createOrFetch(String name, String resource, String method) {
         Resource r = Resource.find("name = ? and resource = ? ", name, resource).first();
         if (r != null) {
             return r;
         }
-        return new Resource(name, resource);
+        return new Resource(name, resource, method);
     }
 }

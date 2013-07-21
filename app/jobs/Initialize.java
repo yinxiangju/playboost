@@ -46,14 +46,14 @@ public class Initialize extends Job<String> {
      * 初始化匿名用户的权限
      */
     private void initAnonymous(UserGroup anonymous) {
-        anonymous.resources.add(new Resource("Application.index", "Application.index"));
+        anonymous.resources.add(new Resource("Application.index", "Application.index", "*"));
         // Users
-        anonymous.resources.add(Resource.createOrFetch("注册页面", "Users.register"));
-        anonymous.resources.add(Resource.createOrFetch("用户注册", "Users.save"));
-        anonymous.resources.add(Resource.createOrFetch("Users.checkEmail", "Users.checkEmail"));
-        anonymous.resources.add(Resource.createOrFetch("Users.login", "Users.login"));
-        anonymous.resources.add(Resource.createOrFetch("Users.logout", "Users.logout"));
-        anonymous.resources.add(Resource.createOrFetch("Users.loginProcess", "Users.loginProcess"));
+        anonymous.resources.add(Resource.createOrFetch("注册页面", "Users.register", "*"));
+        anonymous.resources.add(Resource.createOrFetch("用户注册", "Users.save", "*"));
+        anonymous.resources.add(Resource.createOrFetch("Users.checkEmail", "Users.checkEmail", "*"));
+        anonymous.resources.add(Resource.createOrFetch("Users.login", "Users.login", "*"));
+        anonymous.resources.add(Resource.createOrFetch("Users.logout", "Users.logout", "*"));
+        anonymous.resources.add(Resource.createOrFetch("Users.loginProcess", "Users.loginProcess", "*"));
         anonymous.save();
     }
 
@@ -61,8 +61,8 @@ public class Initialize extends Job<String> {
      * 初始化普通用户的权限
      */
     private void initNormalUser(UserGroup normalUser) {
-        normalUser.resources.add(Resource.createOrFetch("Users.logout", "Users.logout"));
-        normalUser.resources.add(Resource.createOrFetch("Users.home", "Users.home"));
+        normalUser.resources.add(Resource.createOrFetch("Users.logout", "Users.logout", "*"));
+        normalUser.resources.add(Resource.createOrFetch("Users.home", "Users.home", "*"));
         normalUser.save();
     }
 }
